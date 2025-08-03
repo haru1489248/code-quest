@@ -2,7 +2,7 @@
 
 ## 🎯 Project Overview
 
-A gamified learning platform for engineers that combines RPG elements with skill development. Users progress through job-specific roadmaps, level up their skills, and advance their engineering careers in a Dragon Quest-inspired interface.
+A gamified learning platform for engineers that combines RPG elements with skill development. Users progress through job-specific roadmaps, level up their skills, and advance their engineering careers through an RPG-inspired interface.
 
 ## 🛠️ Tech Stack
 
@@ -99,7 +99,7 @@ EXP: 15,420/20,000
 ### Level Up Effects
 - Full-screen light animation
 - Special animation for new skill unlocks
-- Dragon Quest-style level up sound
+- Classic RPG-style level up sound
 - Status point allocation
 
 ### 🏆 Badge & Title System
@@ -169,7 +169,7 @@ guild_members (guild_id, user_id, role, joined_at)
 ## 🎨 UI/UX Requirements
 
 ### Design Themes
-- Dragon Quest-inspired interface
+- Retro RPG-inspired interface
 - Retro pixel art aesthetics
 - Smooth animations and transitions
 - Mobile-responsive design

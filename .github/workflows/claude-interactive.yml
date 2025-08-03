@@ -54,7 +54,7 @@ jobs:
             You are helping with a gamified learning platform for engineers with RPG elements.
             
             Key project aspects:
-            - Dragon Quest-inspired interface with job classes (Warrior=Frontend, Mage=Backend, etc.)
+            - RPG-inspired interface with engineering job classes
             - Skill trees and level progression system
             - Quest system for learning objectives
             - Badge and achievement system
