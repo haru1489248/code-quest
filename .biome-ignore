@@ -1,0 +1,35 @@
+# Biome ignore patterns
+
+# Dependencies
+node_modules/
+.pnp.*
+.yarn/
+
+# Production
+build/
+dist/
+out/
+.next/
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+*.pem
+.env*.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Storybook files (if using ESLint for these)
+**/*.stories.{js,jsx,ts,tsx}

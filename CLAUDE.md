@@ -13,6 +13,7 @@ A gamified learning platform for engineers that combines RPG elements with skill
 - **Styling**: Tailwind CSS (admin panel)
 - **Deployment**: Vercel (ISR, Preview Deployment)
 - **Integration**: GitHub API for skill assessment
+- **Code Quality**: Biome (formatting, linting) + ESLint (import sorting)
 
 ## 🎮 Core Features
 
@@ -226,6 +227,64 @@ guild_members (guild_id, user_id, role, joined_at)
 ## 📚 Additional Documentation
 
 - **Coding Guidelines**: See [`./docs/CODING_GUIDELINES.md`](./docs/CODING_GUIDELINES.md)
+
+## 🔧 Development Commands
+
+### Code Quality Commands
+
+```bash
+# Linting (Biome + ESLint)
+npm run lint          # Check for lint errors
+npm run lint:fix      # Auto-fix lint errors and sort imports
+
+# Formatting (Biome only)
+npm run format        # Format all files
+
+# Comprehensive Check (Biome + ESLint)
+npm run check         # Check format, lint, and imports
+npm run check:fix     # Auto-fix all issues
+
+# Import Sorting (ESLint only)
+npm run sort-imports  # Sort imports only
+```
+
+### Development Workflow
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start
+```
+
+### Tool Responsibilities
+
+- **Biome**: 
+  - Code formatting (Prettier alternative)
+  - TypeScript/React/JSX linting
+  - Security and accessibility checks
+  - Unused imports detection
+  - General code quality rules
+
+- **ESLint (simple-import-sort)**: 
+  - Import statement sorting
+  - Export statement sorting
+  - Custom import grouping
+
+### Import Sort Order
+
+1. Side effect imports
+2. Node.js built-ins (`node:*`)
+3. External packages (`@scope/*`)
+4. External packages (others)
+5. Internal aliases (`@/*`)
+6. Parent imports (`../`)
+7. Sibling imports (`./`)
+8. Style imports (`*.css`, `*.scss`)
 
 ## 🔍 Code Review Standards
 
