@@ -23,15 +23,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Check formatting with Biome
-        run: npm run format:check
-        
-      - name: Run Biome lint
-        run: npm run lint
-        
-      - name: Check import sorting
-        run: npx eslint . --max-warnings 0
-        
       - name: Run comprehensive check (format + lint + imports)
         run: npm run check
         
