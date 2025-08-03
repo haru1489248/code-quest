@@ -1,0 +1,70 @@
+name: Claude Code Interactive
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  claude:
+    # Only run when @claude is mentioned
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+    
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read # Required for Claude to read CI results on PRs
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
+          # Allow Claude to read CI results on PRs
+          additional_permissions: |
+            actions: read
+
+          # Optional: Specify model (defaults to Claude Sonnet 4, uncomment for Claude Opus 4)
+          # model: "claude-opus-4-20250514"
+
+          # Allow Claude to run specific commands
+          allowed_tools: "Bash(npm install),Bash(npm run build),Bash(npm run test),Bash(npm run lint),Bash(npm run typecheck)"
+
+          # Custom instructions for Claude specific to the RPG learning platform
+          custom_instructions: |
+            You are helping with a gamified learning platform for engineers with RPG elements.
+            
+            Key project aspects:
+            - Dragon Quest-inspired interface with job classes (Warrior=Frontend, Mage=Backend, etc.)
+            - Skill trees and level progression system
+            - Quest system for learning objectives
+            - Badge and achievement system
+            - GitHub integration for skill assessment
+            
+            When responding:
+            - Consider the gamification aspects in your suggestions
+            - Follow TypeScript strict mode and React best practices
+            - Ensure security for user data and authentication
+            - Optimize for performance (animations, database queries)
+            - Maintain accessibility standards (WCAG 2.1 AA)
+            
+            Be helpful and encouraging, especially for new contributors!

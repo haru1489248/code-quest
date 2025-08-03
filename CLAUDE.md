@@ -19,17 +19,17 @@ A gamified learning platform for engineers that combines RPG elements with skill
 ### Job Class System (Initial Selection)
 
 **Main Classes**
-- **Warrior**: Frontend Engineer
-- **Mage**: Backend Engineer
-- **Priest**: DevOps Engineer
-- **Thief**: Security Engineer
-- **Sage**: Data Scientist/AI Engineer
-- **Monk**: Mobile App Engineer
+-  Frontend Engineer
+-  Backend Engineer
+-  DevOps Engineer
+-  Security Engineer
+-  Data Scientist/AI Engineer
+-  Mobile App Engineer
 
 **Job Change System**
 - Job transfer available at Level 30
 - Partial skill inheritance from previous job
-- "Hero" class (Full-stack) unlocked after experiencing all classes
+-  class (Full-stack) unlocked after experiencing all classes
 
 ### ⭐ Skill Tree Design
 
@@ -226,3 +226,45 @@ guild_members (guild_id, user_id, role, joined_at)
 ## 📚 Additional Documentation
 
 - **Coding Guidelines**: See [`./docs/CODING_GUIDELINES.md`](./docs/CODING_GUIDELINES.md)
+
+## 🔍 Code Review Standards
+
+### Security Review Criteria
+- **Authentication & Authorization**: All user data must be properly secured
+- **Input Validation**: Sanitize all user inputs to prevent XSS/SQL injection
+- **API Security**: Rate limiting, proper CORS configuration
+- **Token Management**: Secure storage and rotation of GitHub/OAuth tokens
+- **Data Privacy**: GDPR compliance, proper data encryption
+
+### Performance Standards
+- **Page Load Time**: < 3 seconds for initial load
+- **Animation Performance**: 60 FPS for all game animations
+- **Database Queries**: Optimize N+1 queries, use proper indexing
+- **Bundle Size**: Keep JavaScript bundles under 200KB (gzipped)
+- **Image Optimization**: Use Next.js Image component, lazy loading
+
+### Code Quality Requirements
+- **TypeScript**: Strict mode enabled, no `any` types without justification
+- **React Best Practices**: Proper hooks usage, memoization where needed
+- **Testing**: Minimum 80% code coverage for critical features
+- **Documentation**: JSDoc comments for all public APIs
+- **Error Handling**: Comprehensive error boundaries and logging
+
+### Review Focus Areas
+1. **Game Mechanics Implementation**
+   - Skill progression calculations
+   - Experience and level algorithms
+   - Quest completion logic
+   - Badge awarding system
+
+2. **User Experience**
+   - Smooth transitions and animations
+   - Mobile responsiveness
+   - Accessibility (WCAG 2.1 AA compliance)
+   - Loading states and error messages
+
+3. **Integration Points**
+   - GitHub API usage optimization
+   - Database transaction handling
+   - Real-time updates (WebSockets/SSE)
+   - Third-party service integration

@@ -1,0 +1,70 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+      id-token: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code Review
+        id: claude-review
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          
+          # Direct prompt for automated review (no @claude mention needed)
+          direct_prompt: |
+            This is a gamified learning platform for engineers with RPG elements.
+            
+            Please review this pull request focusing on:
+            
+            1. **Security**:
+               - Authentication & authorization security
+               - Input validation and sanitization
+               - API security and rate limiting
+               - Token management and data privacy
+            
+            2. **Performance**:
+               - Page load time optimization
+               - Animation performance (60 FPS target)
+               - Database query efficiency
+               - Bundle size optimization
+            
+            3. **Code Quality**:
+               - TypeScript strict mode compliance
+               - React best practices and hooks usage
+               - Error handling and logging
+               - Code documentation
+            
+            4. **Game Mechanics**:
+               - Skill progression calculations
+               - Experience and level algorithms
+               - Quest completion logic
+               - Badge awarding system
+            
+            5. **User Experience**:
+               - Smooth transitions and animations
+               - Mobile responsiveness
+               - Accessibility (WCAG 2.1 AA)
+               - Loading states and error messages
+            
+            Provide constructive feedback that helps engineers learn while maintaining code quality.
+          
+          # Use sticky comments to reuse the same comment on subsequent pushes
+          use_sticky_comment: true
+          
+          # Allow Claude to run tests and linting
+          allowed_tools: "Bash(npm run test),Bash(npm run lint),Bash(npm run typecheck),Bash(npm run build)"
