@@ -16,7 +16,7 @@ const eslintConfig = [
       '*.bundle.js',
     ],
   },
-  
+
   // TypeScript/JSX パーサー設定とインポートソート
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
