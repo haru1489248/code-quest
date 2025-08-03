@@ -24,7 +24,7 @@ jobs:
         run: npm ci
         
       - name: Check formatting with Biome
-        run: npm run format -- --check
+        run: npx biome format . --check
         
       - name: Run Biome lint
         run: npm run lint
