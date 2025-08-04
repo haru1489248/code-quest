@@ -67,4 +67,4 @@ jobs:
           use_sticky_comment: true
           
           # Allow Claude to run tests and linting
-          allowed_tools: "Bash(npm run test),Bash(npm run lint),Bash(npm run typecheck),Bash(npm run build)"
+          allowed_tools: "Bash(npm run test),Bash(npm run lint),Bash(npm run lint:fix),Bash(npm run check),Bash(npm run check:fix),Bash(npm run format),Bash(npm run typecheck),Bash(npm run build)"
